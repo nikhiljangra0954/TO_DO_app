@@ -29,10 +29,10 @@ const newtodo = async (req, res) => {
     // } catch (error) {
     //   res.send({ message: error.message });
     // }
-    await client.RPUSH(
-        "tasks",
-        JSON.stringify(data)
-      );
+    // await client.RPUSH(
+        // "tasks",
+        // JSON.stringify(data)
+    //   );
     const newtododata = new todoModel(data);
     await newtododata.save();
     // console.log(newtododata)
@@ -46,13 +46,13 @@ const newtodo = async (req, res) => {
 
 const gettodos = async (req, res) => {
   try {
-    const todos = await client.LRANGE("tasks", 0, -1);
-    const alltodos = todos.map(JSON.parse);
+    // const todos = await client.LRANGE("tasks", 0, -1);
+    // const alltodos = todos.map(JSON.parse);
     const data = await todoModel.find({})
     // const data = await client.SMEMBERS("todos");
-    res.status(200).send(alltodos);
+    // res.status(200).send(alltodos);
 
-    // res.status(200).send(data);
+    res.status(200).send(data);
   } catch (error) {
     res.status(500).send({ error: error });
   }
